@@ -10,10 +10,10 @@
 using namespace std;
 
 /* TODO[]
- * - submatrices/subvectors
+ * - submatrices
  * - persistent normalization for inc. recovery (lockable manually)
- * - deny append to reference vector
- * - add optimization flag use in bench and main
+ * - add dimensional checks for all mat-mat, vec-vec, mat-vec operations, replace assert with a custom exception
+ * - move outer product into vector.h/cpp
  * // todo add element-wise ops
  */
 
@@ -23,7 +23,9 @@ int main(int argc, char *argv[])
     
     if (argc == 1)
     {
-        Testing::TestMult();
+        Testing::TestBasicActions();
+        cout << endl << "---=========---" << endl << endl;
+        Testing::TestBasicOps();
         cout << endl << "---=========---" << endl << endl;
         Testing::TestCD();
         cout << endl << "---=========---" << endl << endl;

@@ -305,13 +305,81 @@ Matrix &Matrix::append(const Vector &newData)
 {
     if (_isReference)
     {
-        throw std::logic_error("Can't append to referenced matrices");
+        throw ReferenceAppendedException("Appending to reference-matrix is not allowed, create a copy() first");
     }
     expandStorage();
     
     insertVectorAtRow(_dimN - 1, newData);
     
     return *this;
+}
+
+Matrix Matrix::subMatrix(uint64_t size_n, uint64_t size_m)
+{
+    assert(size_n <= _dimN);
+    assert(size_m <= _dimM);
+    
+    Matrix newMat(size_n, size_m, false);
+    
+    if (size_m == _dimM) // exceptional case
+    {
+        std::copy(_data,
+                  _data + (size_n * _dimM),
+                  newMat._data);
+    }
+    else
+    {
+        // row-wise copy
+        for (uint64_t i = 0; i < size_n; ++i)
+        {
+            std::copy(_data + (i * _dimM),
+                      _data + (i * _dimM) + size_m,
+                      newMat._data + (i * size_m));
+        }
+    }
+    
+    return newMat;
+}
+
+Matrix Matrix::subMatrix(uint64_t start_n, uint64_t start_m, uint64_t size_n, uint64_t size_m)
+{
+    assert(start_n + size_n <= _dimN);
+    assert(start_m + size_m <= _dimM);
+    
+    Matrix newMat(size_n, size_m, false);
+    
+    if (size_m == _dimM) // exceptional case (=> start_m == 0)
+    {
+        std::copy(_data + (start_n * _dimM),
+                  _data + ((start_n + size_n) * _dimM),
+                  newMat._data);
+    }
+    else
+    {
+        // row-wise copy
+        for (uint64_t i = start_n; i < start_n + size_n; ++i)
+        {
+            std::copy(_data + (i * _dimM) + start_m,
+                      _data + (i * _dimM) + start_m + size_m,
+                      newMat._data + ((i - start_n) * size_m));
+        }
+    }
+    
+    return newMat;
+}
+
+Vector Matrix::diag()
+{
+    assert(_dimN == _dimM);
+    
+    Vector newVec(_dimN, false);
+    
+    for (uint64_t i = 0; i < _dimN; ++i)
+    {
+        newVec[i] = operator()(i, i);
+    }
+    
+    return newVec;
 }
 
 Matrix &Matrix::operator+=(const Matrix &mxB)
@@ -556,7 +624,7 @@ Matrix operator*(const Matrix &mxA, const Matrix &mxB)
     Matrix newMx(mxA.dimN(), mxB.dimM(), false);
     uint64_t sharedDim = mxA.dimM();
     
-    #pragma omp parallel
+  #pragma omp parallel
     {
         uint64_t myid = (uint64_t)omp_get_thread_num();
         uint64_t total = (uint64_t)omp_get_num_threads();
@@ -592,7 +660,7 @@ Matrix matrix_mult_AT_B(const Matrix &mxA, const Matrix &mxB)
     Matrix newMx(mxA.dimM(), mxB.dimM(), false);
     uint64_t sharedDim = mxA.dimN();
     
-    #pragma omp parallel
+  #pragma omp parallel
     {
         uint64_t myid = (uint64_t)omp_get_thread_num();
         uint64_t total = (uint64_t)omp_get_num_threads();
@@ -628,7 +696,7 @@ Matrix matrix_mult_A_BT(const Matrix &mxA, const Matrix &mxB)
     Matrix newMx(mxA.dimN(), mxB.dimN(), false);
     uint64_t sharedDim = mxA.dimM();
     
-    #pragma omp parallel
+  #pragma omp parallel
     {
         uint64_t myid = (uint64_t)omp_get_thread_num();
         uint64_t total = (uint64_t)omp_get_num_threads();
@@ -668,7 +736,7 @@ Vector operator*(const Matrix &mx, const Vector &vec)
     // M * v
     Vector newVec(mx.dimN(), false);
     
-    #pragma omp parallel
+  #pragma omp parallel
     {
         uint64_t myid = (uint64_t)omp_get_thread_num();
         uint64_t total = (uint64_t)omp_get_num_threads();
@@ -697,7 +765,7 @@ Vector operator^(const Matrix &mx_t, const Vector &vec)
     // M^T * v
     Vector newVec(mx_t.dimM(), true);
     
-    #pragma omp parallel
+  #pragma omp parallel
     {
         uint64_t myid = (uint64_t)omp_get_thread_num();
         uint64_t total = (uint64_t)omp_get_num_threads();
@@ -727,7 +795,7 @@ Matrix vector_outer(const Vector &vecA, const Vector &vecB)
     //outer product, aka a * b^T, sizes don't matter!
     Matrix newMx(vecA.dim(), vecB.dim(), false);
     
-    #pragma omp parallel
+  #pragma omp parallel
     {
         uint64_t myid = (uint64_t)omp_get_thread_num();
         uint64_t total = (uint64_t)omp_get_num_threads();

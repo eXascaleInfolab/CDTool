@@ -4,7 +4,8 @@
 
 #pragma once
 
-namespace Testing {
+namespace Testing
+{
 
 //
 // Test scenarios
@@ -17,6 +18,8 @@ void TestIncCD();
 
 void TestCD();
 
-void TestMult();
+void TestBasicOps();
+
+void TestBasicActions();
 
 } //namespace Testing

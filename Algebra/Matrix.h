@@ -2,13 +2,13 @@
 // Created by Zakhar on 07.03.2017.
 //
 
+#pragma once
+
 #include <vector>
 #include <string>
 
 #include "Vector.h"
 #include "../shared/SharedLibFunctions.h"
-
-#pragma once
 
 namespace Algebra
 {
@@ -110,6 +110,23 @@ class Matrix
     Matrix &append(const std::vector<double> &newData);
     
     Matrix &append(const Vector &newData);
+    
+    /// Creates a new matrix by taking first upper-left-most `size_n` x `size_m` submatrix of the current one
+    /// @param [in] size_n amount of rows to take for a new matrix
+    /// @param [in] size_m amount of columns to take for a new matrix
+    Matrix subMatrix(uint64_t size_n, uint64_t size_m);
+    
+    /// Creates a new matrix by taking `size_n` x `size_m` submatrix of the current one
+    /// starting at indices `start_n` for rows and `start_m` for columns
+    /// @param [in] start_n index of the first row to take for a new matrix
+    /// @param [in] start_m index of the first column to take for a new matrix
+    /// @param [in] size_n amount of rows to take for a new matrix
+    /// @param [in] size_m amount of columns to take for a new matrix
+    Matrix subMatrix(uint64_t start_n, uint64_t start_m, uint64_t size_n, uint64_t size_m);
+    
+    /// Constructs a vector out of a diagonal of the matrix,
+    /// calling the function on a non-square matrix generates an exception
+    Vector diag();
     
     Matrix &operator+=(const Matrix &mxB);
     

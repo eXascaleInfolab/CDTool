@@ -10,7 +10,7 @@
 namespace Algebra
 {
 
-class Vector;
+class Matrix;
 
 class Vector
 {
@@ -112,9 +112,20 @@ class Vector
     Vector &fill(double val);
     
     /// Increases the storage capacity of the Vector by 1 and places the value at the added position
-    /// @param [in] value vector size
+    /// @param [in] value element inserted at a new position
     Vector &append(double value);
     
+    /// Creates a new vector by taking first `size` elements of the current one
+    /// @param [in] size amount of elements to take for a new vector
+    Vector subVector(uint64_t size);
+    
+    /// Creates a new vector by taking `size` elements of the current one starting with `start`
+    /// @param [in] start index of the first element to take for a new vector
+    /// @param [in] size amount of elements to take for a new vector
+    Vector subVector(uint64_t start, uint64_t size);
+    
+    /// Constructs a square matrix with the currect vector on the diagonal
+    Matrix diag();
 }; // end class
 
 //
@@ -132,5 +143,25 @@ Vector &operator*(double scalar, Vector &vec);
 Vector &operator/(Vector &vec, double scalar);
 
 double vector_dot(const Vector &vec1, const Vector &vec2);
+
+//
+// Error handling
+//
+
+struct ReferenceAppendedException : public std::exception
+{
+  private:
+    const char *message;
+  
+  public:
+    explicit ReferenceAppendedException(const char *what_arg)
+            : message(what_arg)
+    { }
+    
+    const char *what() const noexcept override
+    {
+        return message;
+    }
+};
 
 } // namespace Algebra

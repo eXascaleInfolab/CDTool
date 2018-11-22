@@ -272,7 +272,7 @@ std::vector<std::vector<double>> testdata2 = {
 std::vector<double> vector1 = {1.4, -2.0, 0.7};
 }
 
-void TestMult()
+void TestBasicOps()
 {
     Matrix m1 = Matrix(DataSets::testdata1);
     Matrix m2 = Matrix(DataSets::testdata2);
@@ -325,6 +325,46 @@ void TestMult()
     
     std::cout << "<V1,V1> & ||V1||_2: " << std::endl << vector_dot(v1, v1)
               << " \t" << v1.norm2() << std::endl << std::endl;
+}
+
+void TestBasicActions()
+{
+    Matrix m1 = Matrix(DataSets::testdata1);
+    Matrix m2 = Matrix(DataSets::testdata2);
+    
+    Vector v1 = Vector(DataSets::vector1);
+    
+    Matrix m_id = Matrix::identity(m2.dimN());
+    
+    std::cout << "M1:" << std::endl << m1.toString() << std::endl;
+    std::cout << "M2:" << std::endl << m2.toString() << std::endl;
+    std::cout << "V1: " << std::endl << v1.toString() << std::endl;
+    std::cout << "ID: " << std::endl << m_id.toString() << std::endl;
+    
+    
+    Vector diag = m_id.diag().diag().diag().diag().diag().diag().diag();
+    std::cout << "diag(diag(diag(M1))): " << std::endl << diag.toString() << std::endl;
+    
+    Matrix id_cut = m_id.subMatrix(2, 2);
+    std::cout << "ID(:2, :2): " << std::endl << id_cut.toString() << std::endl;
+    
+    Matrix m1_cut_fullcol = m1.subMatrix(2, 3);
+    std::cout << "M1(:2, :): " << std::endl << m1_cut_fullcol.toString() << std::endl;
+    
+    Matrix m1_cut = m1.subMatrix(1, 1, 2, 2);
+    std::cout << "M1(2:3, 2:3): " << std::endl << m1_cut.toString() << std::endl;
+    
+    Matrix m2_cut = m2.subMatrix(1, 1, 2, 1);
+    std::cout << "M2(2:3, 2:2): " << std::endl << m2_cut.toString() << std::endl;
+    
+    Matrix m2_cut_fullcol = m2.subMatrix(1, 0, 1, 2);
+    std::cout << "M2(2, :): " << std::endl << m2_cut_fullcol.toString() << std::endl;
+    
+    Vector v1_cut = v1.subVector(2);
+    std::cout << "V1(:2): " << std::endl << v1_cut.toString() << std::endl;
+    
+    Vector v1_cut_alt = v1.subVector(1, 2);
+    std::cout << "V1(2:3): " << std::endl << v1_cut_alt.toString() << std::endl;
 }
 
 } //namespace Testing
