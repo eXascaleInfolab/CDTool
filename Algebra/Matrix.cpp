@@ -8,9 +8,12 @@
 #include <vector>
 #include <iomanip>
 #include <sstream>
-#include <omp.h>
 #include <iostream>
 #include <random>
+
+#ifdef multi
+#include <omp.h>
+#endif
 
 #include "Matrix.h"
 
