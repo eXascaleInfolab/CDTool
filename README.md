@@ -2,10 +2,10 @@
 
 ## Building:
 
-`mkdir cmake-build-debug
-make all`
+- `mkdir cmake-build-debug`
+- `make all`
 
 ## Running:
 
-`cd cmake-build-debug
-./incCD --help`
+- `cd cmake-build-debug`
+- `./incCD --help`
