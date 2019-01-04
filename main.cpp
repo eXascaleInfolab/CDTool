@@ -325,6 +325,7 @@ int main(int argc, char *argv[])
             }
             else if (test == PTestType::Output)
             {
+                (void) Performance::Normalization(matrix);
                 MathIO::exportMatrix(output, matrix);
             }
             else
