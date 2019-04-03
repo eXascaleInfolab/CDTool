@@ -123,9 +123,9 @@ void Stats::CorrelationMatrix::setMeanAndStdDev()
         mean[j] = 0.0;
         stddev[j] = 0.0;
         
-        shift[j]  = (matrix(j, 0)
-                     + matrix(j, matrix.dimN() - 1)
-                     + matrix(j, (matrix.dimN() - 1) / 2)
+        shift[j]  = (matrix(0, j)
+                     + matrix(matrix.dimN() - 1, j)
+                     + matrix((matrix.dimN() - 1) / 2, j)
                     ) / 3;
     }
     
