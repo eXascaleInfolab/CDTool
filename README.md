@@ -13,31 +13,67 @@
 ## Running:
 
 - `cd cmake-build-debug`
-- `./incCD [arguments]`
+- `./incCD -task [arg] -act [arg] -input [filename]`
 - Mandatory command-line arguments for the program:
 
- | -act | -test | -input |
+ | -task | -act | -input |
  | -------- | -------- | -------- | 
- | dec    | out        | [filename] |
+ | dec    | res        | [filename] |
  | rec    | prec       | |
  | norm   | runtime    | |
 
 Actions:
 - dec - performs decomposition
 - rec - performs recovery
-- norm - performs normalization
+- norm - performs z-score normalization
 
 Tests:
-- out - provides output of the action
+- res - provides output of the action
 - prec - measures precision (only valid for decomposition)
-- runtime - measures runtime
+- runtime - measures runtime (in microseconds)
 
-Result is written into the file, decomposition output is written into three files (Loading matrix, Relevance matrix, Centroid Values)
+Result is written into the file, decomposition output is written into three files with resp. suffixes (Loading matrix, Relevance matrix, Centroid Values)
 
 Optional commands:
 
-- `-n [size]`, `-m [size]` makes program read only specifies number of rows/columns from the input matrix
+- `--help` displays build-in help file with all commands and their usage.
+- `-n [size]`, `-m [size]` makes program read only specifies number of rows/columns from the input matrix.
 - `-k [size]` makes decomposition or recovery use this truncation parameter. default (decomposition): run decomposition to maximum. default (recovery): use built-in auto-detection of truncation.
-- `-sv [sign-vector-alg]` tba
-- `-output [filename]` redirects the output from a file decided by a program into a different one. Keep in mind, in case of decomposition output your file name will be appended with `.Load`, `.Rel` and `.Centroid` suffixes for three outputs
-- other parameters can be found in built-in help file, which can be accessed by running `./incCD --help`
+- `-cdvar [cd-variant]` sets the execution of CD to use a non-default algorithm variant. See built-in help file for a list of variants.
+- `-output [filename]` redirects the output from a file decided by a program into a different one. Keep in mind, in case of decomposition output your file name will be appended with `.Load`, `.Rel` and `.Centroid` suffixes for three outputs.
+- other parameters can be found in built-in help file.
+
+# Examples
+
+- Run CD to decompose a matrix `example.txt` and store the result
+```bash
+    $ ./incCD -task dec -act res -input example.txt
+```
+You will find `example.txt.Load` with loading matrix,  `example.txt.Rel` with relevance matrix and `example.txt.Centroid` with centroid values that contain the result of the decomposition.
+
+- Run CD to recover missing values in `example_mis.txt` and store the runtime
+```bash
+    $ ./incCD -task rec -act runtime -input example_mis.txt
+```
+You will find `example.txt.runtime` with the running time of the algorithm (in microseconds)
+
+- Normalize the matrix `example.txt` and store the result in a custom file
+```bash
+    $ ./incCD -task norm -act res -input example.txt -output example_z-score_normalized.txt
+```
+
+- Run truncated decomposition on the matrix `example.txt` with truncation factor of 3
+```bash
+    $ ./incCD -task dec -act res -input example.txt -k 3
+```
+
+- Test the runtime of decomposition of the first 100, then 500 rows of the matrix `example.txt`.
+```bash
+    $ ./incCD -task dec -act runtime -input example.txt -n 100
+    $ ./incCD -task dec -act runtime -input example.txt -n 500
+```
+
+- Recover missing values in the first 500 rows, 10 columns using truncation of 3 and store the reult in a custom file
+```bash
+    $ ./incCD -task rec -act res -input example_mis.txt -n 500 -m 10 -k 3 -output example_500_10_3_recovered.txt
+```
