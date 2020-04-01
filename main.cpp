@@ -89,11 +89,43 @@ int main(int argc, char *argv[])
         return EXIT_FAILURE;
     }
     
-    if (input.empty() || output.empty())
+    if (input.empty())
     {
-        std::cout << "Input or output are not specified" << std::endl;
+        std::cout << "Input file is not specified" << std::endl;
         printUsage();
         return EXIT_FAILURE;
+    }
+
+    if (output.empty())
+    {
+        if (test == PTestType::Runtime)
+        {
+            output = input + ".runtime";
+        }
+        else if (test == PTestType::Precision)
+        {
+            output = input + ".precision";
+        }
+        else
+        {
+            switch (action)
+            {
+                case PAction::Decomposition:
+                    output = input;
+                    break;
+                
+                case PAction::Recovery:
+                    output = input + ".recovered";
+                    break;
+
+                case PAction::Normalization:
+                    output = input + ".normalized";
+                    break;
+                
+                default:
+                    break;
+            }
+        }
     }
     
     // by this point we have an absolute minimum to proceed
