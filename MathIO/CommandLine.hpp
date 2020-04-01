@@ -13,25 +13,22 @@ void printUsage()
 {
     cout << endl << "Usage: ./incCD -obligatory arg [-optional arg]" << endl
          << endl
-         << "-action {arg}, -act {arg}" << endl
-         << "    | arg:" << endl
-         << "        | dec, d  - centroid decomposition" << endl
-         << "        | rec, r  - recovery of missing values" << endl
-         << "        | norm, n - normalization of the matrix" << endl
-         << "    | the baseline action to perform" << endl
+         << "== Obligatory arguments ==" << endl
          << endl
-         << "-test {arg}, -t {arg}" << endl
-         << "    | arg:" << endl
-         << "        | out, o      - the result of the <action>" << endl
-         << "        | prec, p     - precision of the <action>" << endl
-         << "        | runtime, rt - runtime of the <action>" << endl
-         << "    | choose what to output from the action" << endl
+         << "-task {arg}" << endl
+         << "    | dec  - centroid decomposition" << endl
+         << "    | rec  - recovery of missing values" << endl
+         << "    | norm - normalization of the matrix" << endl
          << endl
-         << "-input {str}, -in {str}" << endl
+         << "-act {arg}" << endl
+         << "    | res     - the result of the <task>" << endl
+         << "    | prec    - precision of the <task>" << endl
+         << "    | runtime - runtime of the <task>" << endl
+         << endl
+         << "-input {str}" << endl
          << "    | file name, where to take the input matrix from" << endl
          << endl
-         << "-output {str}, -out {str}" << endl
-         << "    | file name, where to store the result of <test>" << endl
+         << "== Optional arguments ==" << endl
          << endl
          << "[-n {int}] default(0)" << endl
          << "    | amount of rows to load from the input file" << endl
@@ -45,6 +42,12 @@ void printUsage()
          << "    | amount of columns of truncated decomposition to keep" << endl
          << "    | 0 (dec) - will be set to be equal to m" << endl
          << "    | 0 (rec) - will be automatically detected" << endl
+         << endl
+         << "[-output {str}] default(auto)" << endl
+         << "    | file name, where to store the result of <test>" << endl
+         << "    | if not provided, input name with be appended with an appropriate suffix" << endl
+         << endl
+         << "== Other arguments (technical) ==" << endl
          << endl
          << "[-sv {arg}] default(lsv-base)" << endl
          << "    | arg:" << endl
