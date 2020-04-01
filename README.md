@@ -22,13 +22,15 @@
  | rec    | prec       | |
  | norm   | runtime    | |
 
-dec - performs decomposition
-rec - performs recovery
-norm - performs normalization
+Actions:
+- dec - performs decomposition
+- rec - performs recovery
+- norm - performs normalization
 
-out - provides output of the action
-prec - measures precision (only valid for decomposition)
-runtime - measures runtime
+Tests:
+- out - provides output of the action
+- prec - measures precision (only valid for decomposition)
+- runtime - measures runtime
 
 result is written into the file, decomposition output is written into three files (Loading matrix, Relevance matrix, Centroid Values)
 
