@@ -11,14 +11,14 @@ using namespace std;
 
 void printUsage()
 {
-    cout << endl << "Usage: ./incCD -obligatory arg [-optional arg]" << endl
+    cout << endl << "Usage: ./incCD -task [arg] -act [arg] -input [filename]" << endl
          << endl
          << "== Obligatory arguments ==" << endl
          << endl
          << "-task {arg}" << endl
          << "    | dec  - centroid decomposition" << endl
          << "    | rec  - recovery of missing values" << endl
-         << "    | norm - normalization of the matrix" << endl
+         << "    | norm - normalization of the matrix (z-score)" << endl
          << endl
          << "-act {arg}" << endl
          << "    | res     - the result of the <task>" << endl
@@ -43,27 +43,25 @@ void printUsage()
          << "    | 0 (dec) - will be set to be equal to m" << endl
          << "    | 0 (rec) - will be automatically detected" << endl
          << endl
+         << "[-cdvar {arg}] default(lsv-base)" << endl
+         << "        | lsv-base   - local sign vector (default)" << endl
+         << "        | lsv-noinit - LSV with skipped init" << endl
+         << "        | issv       - incremental scalable sign vector" << endl
+         << "        | issv+      - ISSV+ (lifted condition of 1 update per iteration)" << endl
+         << "        | issv-init  - ISSV  but with linear init" << endl
+         << "        | issv+-init - ISSV+ but with linear init" << endl
+         << "    | invalid value will result in a warning message and a fallback to a default algorithm" << endl
+         << endl
          << "[-output {str}] default(auto)" << endl
          << "    | file name, where to store the result of <test>" << endl
          << "    | if not provided, input name with be appended with an appropriate suffix" << endl
          << endl
          << "== Other arguments (technical) ==" << endl
          << endl
-         << "[-sv {arg}] default(lsv-base)" << endl
-         << "    | arg:" << endl
-         << "        | issv       - incremental scalable sign vector" << endl
-         << "        | issv+      - ISSV+ (lifted condition of 1 update per iteration)" << endl
-         << "        | issv-init  - ISSV  but with linear init" << endl
-         << "        | issv+-init - ISSV+ but with linear init" << endl
-         << "        | lsv-base   - local sign vector" << endl
-         << "        | lsv-noinit - LSV with skipped init" << endl
-         << "    | a sign vector search algorithm to be used with CD, applicable for <action> dec & rec" << endl
-         << "    | invalid value will result in a warning message and a fallback to a default algorithm" << endl
-         << endl
          << "[-xtra {arg}] default(<none>)" << endl
          << "    | arg: " << endl
-         << "        | inc, i         - turn on incremental mode (supplying -n and -imax is obligatory)" << endl
-         << "        | ilastonly, ilo - (incremental) print only the last action of the incremental <action>" << endl
+         << "        | inc            - turn on incremental mode (supplying -n and -imax is obligatory)" << endl
+         << "        | ilastonly      - (incremental) print only the last action of the incremental <task>" << endl
          << "        | full           - (non-incremental) export rt/prec with info about n, m" << endl
          << "        | batch, bat     - (recovery) disable sign vector caching during recovery" << endl
          << "        | recnorm        - (recovery) use z-score normalization during recovery" << endl
@@ -71,15 +69,11 @@ void printUsage()
          << "    | multiple flags require \"-xtra flag1 -xtra flag2 ...\"" << endl
          << endl
          << "[-istep {int}] default(1)" << endl
-         << "    | (inc) amount of rows to load before re-applying <action>" << endl
+         << "    | (incremental-only) amount of rows to load before re-applying <action>" << endl
          << endl
          << "[-imax {int}] default(0)" << endl
-         << "    | (inc) maximum amount of rows to apply <action> to" << endl
+         << "    | (incremental-only) maximum amount of rows to apply <action> to" << endl
          << "    |       0 - load as much as possible" << endl
-         << endl
-         << "[-rcdopt {int}] default(0)" << endl
-         << "    | (rec) apply optimization with the resp. code" << endl
-         << "    |       overrides \"-xtra bat\"" << endl
          << endl;
 }
 
@@ -134,7 +128,7 @@ int CommandLine2(
         }
             
             // Action type, base algorithm to be used
-        else if (temp == "-act" || temp == "-action")
+        else if (temp == "-task")
         {
             ++i;
             temp = argv[i];
@@ -153,19 +147,19 @@ int CommandLine2(
             }
             else
             {
-                cout << "Unrecognized -action argument" << endl;
+                cout << "Unrecognized -task argument" << endl;
                 printUsage();
                 return EXIT_FAILURE;
             }
         }
             
             // Test type, how the algorithm is applied
-        else if (temp == "-test" || temp == "-t")
+        else if (temp == "-action" || temp == "-act" || temp == "-test" || temp == "-t")
         {
             ++i;
             temp = argv[i];
             
-            if (temp == "out" || temp == "o")
+            if (temp == "res" || temp == "r" || temp == "out" || temp == "o")
             {
                 test = PTestType::Output;
             }
@@ -179,14 +173,14 @@ int CommandLine2(
             }
             else
             {
-                cout << "Unrecognized -test argument" << endl;
+                cout << "Unrecognized -act argument" << endl;
                 printUsage();
                 return EXIT_FAILURE;
             }
         }
             
             // Additional parameters
-        else if (temp == "-sv")
+        else if (temp == "-cdvar")
         {
             ++i;
             signVector = argv[i];
