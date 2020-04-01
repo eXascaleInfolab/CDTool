@@ -32,12 +32,11 @@ Tests:
 - prec - measures precision (only valid for decomposition)
 - runtime - measures runtime
 
-result is written into the file, decomposition output is written into three files (Loading matrix, Relevance matrix, Centroid Values)
+Result is written into the file, decomposition output is written into three files (Loading matrix, Relevance matrix, Centroid Values)
 
-- Optional commands:
+Optional commands:
 
-- You can see a full list by running `./incCd --help`
 - `-output [filename]` redirects the output from a file decided by a program into a different one. Keep in mind, in case of decomposition output your file name will be appended with `.Load`, `.Rel` and `.Centroid` suffixes for three outputs
 - `-n [size]`, `-m [size]` makes program read only specifies number of rows/columns from the input matrix
 - `-k [size]` makes decomposition or recovery use this truncation parameter. default (decomposition): run decomposition to maximum. default (recovery): use built-in auto-detection of truncation.
-- other parameters can be found in built-in help file
+- other parameters can be found in built-in help file, which can be accessed by running `./incCD --help`
