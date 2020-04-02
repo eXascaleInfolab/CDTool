@@ -44,8 +44,8 @@ Optional commands:
 - `-k [size]` makes decomposition or recovery use this truncation parameter. 
     - Default truncation for decomposition: full matrix. 
     - Default truncation for recovery: use built-in auto-detection of truncation.
-- `-output [filename]` redirects the output from a file decided by a program into a different one. Keep in mind, in case of decomposition output your file name will be appended with `.Load`, `.Rel` and `.Centroid` suffixes for three outputs.
-- `-cdvar [cd-variant]` sets the execution of CD to use a non-default algorithm variant. See built-in help file for a list of variants.
+- `-output [filename]` redirects the output from a file decided by a program into a different one. 
+- `-cdvar [cd-variant]` sets the execution of CD to use a differnt variant of the algorithm. See built-in help file for a list of variants.
 - other parameters can be found in built-in help file.
 
 # Examples
