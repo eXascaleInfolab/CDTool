@@ -22,17 +22,18 @@
  | rec    | prec       | |
  | norm   | runtime    | |
 
-Actions:
+Tasks:
 - dec - performs decomposition
 - rec - performs recovery
 - norm - performs z-score normalization
 
-Tests:
+Actions:
 - res - provides output of the action
 - prec - measures precision (only valid for decomposition)
 - runtime - measures runtime (in microseconds)
 
-Result is written into the file, decomposition output is written into three files with resp. suffixes (Loading matrix, Relevance matrix, Centroid Values)
+
+The result is written into the file, decomposition output is written into three files with resp. suffixes (Loading matrix, Relevance matrix, Centroid Values)
 
 Optional commands:
 
