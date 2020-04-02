@@ -42,8 +42,8 @@ Optional commands:
 - `--help` displays build-in help file with all commands and their usage.
 - `-n [size]`, `-m [size]` makes program read only specifies number of rows/columns from the input matrix.
 - `-k [size]` makes decomposition or recovery use this truncation parameter. default (decomposition): run decomposition to maximum. default (recovery): use built-in auto-detection of truncation.
-- `-cdvar [cd-variant]` sets the execution of CD to use a non-default algorithm variant. See built-in help file for a list of variants.
 - `-output [filename]` redirects the output from a file decided by a program into a different one. Keep in mind, in case of decomposition output your file name will be appended with `.Load`, `.Rel` and `.Centroid` suffixes for three outputs.
+- `-cdvar [cd-variant]` sets the execution of CD to use a non-default algorithm variant. See built-in help file for a list of variants.
 - other parameters can be found in built-in help file.
 
 # Examples
