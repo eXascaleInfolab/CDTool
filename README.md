@@ -3,12 +3,17 @@
 ## Prerequisites
 
 - Ubuntu 16 or higher (including Ubuntu derivatives, e.g., Xubuntu).
-- `sudo apt install build-essential`
-- `sudo apt install clang`
+```bash
+    $ sudo apt install build-essential
+    $ sudo apt install clang
+```
 
 ## Build:
 
-- `make all`
+
+```bash
+    $ make all
+```
 
 ## Execution:
 
