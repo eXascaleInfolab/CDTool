@@ -55,11 +55,10 @@ Optional commands:
 ```
 You will find `example.txt.Load` with loading matrix,  `example.txt.Rel` with relevance matrix and `example.txt.Centroid` with centroid values that contain the result of the decomposition.
 
-- Recover the missing values in `example_mis.txt` and store the runtime
+- Recover the missing values in `example_mis.txt` and store the runtime (in microseconds)
 ```bash
     $ ./cdec -task rec -act runtime -input example_mis.txt
 ```
-You will find `example.txt.runtime` with the running time of the algorithm (in microseconds)
 
 - Normalize the columns of matrix `example.txt` and store the result in a custom file
 ```bash
