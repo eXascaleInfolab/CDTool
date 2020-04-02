@@ -6,11 +6,11 @@
 - `sudo apt install build-essential`
 - `sudo apt install clang`
 
-## Building:
+## Buil:
 
 - `make all`
 
-## Running:
+## Execution:
 
 - `cd cmake-build-debug`
 - `./cdec -task [arg] -act [arg] -input [filename]`
