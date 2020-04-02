@@ -45,7 +45,7 @@ Optional commands:
     - Default truncation for recovery: use built-in auto-detection of truncation.
 - `-output [filename]` redirects the output from a file decided by a program into a different one. 
 - `-cdvar [cd-variant]` sets the execution of CD to use a differnt variant of the algorithm. See built-in help file for a list of variants.
-- other parameters can be found in built-in help file: `./cdec --help`
+- other parameters can be found in the built-in help file: `./cdec --help`
 
 # Examples
 
