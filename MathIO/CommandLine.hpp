@@ -11,7 +11,7 @@ using namespace std;
 
 void printUsage()
 {
-    cout << endl << "Usage: ./incCD -task [arg] -act [arg] -input [filename]" << endl
+    cout << endl << "Usage: ./cdec -task [arg] -act [arg] -input [filename]" << endl
          << endl
          << "== Obligatory arguments ==" << endl
          << endl
