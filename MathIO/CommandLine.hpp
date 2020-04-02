@@ -59,7 +59,6 @@ void printUsage()
          << "== Other arguments (technical) ==" << endl
          << endl
          << "[-xtra {arg}] default(<none>)" << endl
-         << "    | arg: " << endl
          << "        | inc            - turn on incremental mode (supplying -n and -imax is obligatory)" << endl
          << "        | ilastonly      - (incremental) print only the last action of the incremental <task>" << endl
          << "        | full           - (non-incremental) export rt/prec with info about n, m" << endl

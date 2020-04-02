@@ -13,7 +13,7 @@
 ## Running:
 
 - `cd cmake-build-debug`
-- `./incCD -task [arg] -act [arg] -input [filename]`
+- `./cdRec -task [arg] -act [arg] -input [filename]`
 - Mandatory command-line arguments for the program:
 
  | -task | -act | -input |
@@ -47,33 +47,33 @@ Optional commands:
 
 - Run CD to decompose a matrix `example.txt` and store the result
 ```bash
-    $ ./incCD -task dec -act res -input example.txt
+    $ ./cdRec -task dec -act res -input example.txt
 ```
 You will find `example.txt.Load` with loading matrix,  `example.txt.Rel` with relevance matrix and `example.txt.Centroid` with centroid values that contain the result of the decomposition.
 
 - Run CD to recover missing values in `example_mis.txt` and store the runtime
 ```bash
-    $ ./incCD -task rec -act runtime -input example_mis.txt
+    $ ./cdRec -task rec -act runtime -input example_mis.txt
 ```
 You will find `example.txt.runtime` with the running time of the algorithm (in microseconds)
 
 - Normalize the matrix `example.txt` and store the result in a custom file
 ```bash
-    $ ./incCD -task norm -act res -input example.txt -output example_z-score_normalized.txt
+    $ ./cdRec -task norm -act res -input example.txt -output example_z-score_normalized.txt
 ```
 
 - Run truncated decomposition on the matrix `example.txt` with truncation factor of 3
 ```bash
-    $ ./incCD -task dec -act res -input example.txt -k 3
+    $ ./cdRec -task dec -act res -input example.txt -k 3
 ```
 
 - Test the runtime of decomposition of the first 100, then 500 rows of the matrix `example.txt`.
 ```bash
-    $ ./incCD -task dec -act runtime -input example.txt -n 100
-    $ ./incCD -task dec -act runtime -input example.txt -n 500
+    $ ./cdRec -task dec -act runtime -input example.txt -n 100
+    $ ./cdRec -task dec -act runtime -input example.txt -n 500
 ```
 
 - Recover missing values in the first 500 rows, 10 columns using truncation of 3 and store the reult in a custom file
 ```bash
-    $ ./incCD -task rec -act res -input example_mis.txt -n 500 -m 10 -k 3 -output example_500_10_3_recovered.txt
+    $ ./cdRec -task rec -act res -input example_mis.txt -n 500 -m 10 -k 3 -output example_500_10_3_recovered.txt
 ```
