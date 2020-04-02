@@ -12,9 +12,11 @@
 
 ## Execution:
 
-- `cd cmake-build-debug`
-- `./cdec -task [arg] -act [arg] -input [filename]`
-- Mandatory command-line arguments for the program:
+```bash
+    $ cd cmake-build-debug
+    $ ./cdec -task [arg] -act [arg] -input [filename]
+```
+- Command-line arguments for the program:
 
  | -task | -act | -input |
  | -------- | -------- | -------- | 
