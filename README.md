@@ -1,5 +1,5 @@
 # ProcTS
-ProcTS is a set of useful primitives to process time series data. It allows to peform the following main tasks i) normalize an input file, ii) decompose it in such a was that expose its rank, and iii) recover the missing blocks. 
+ProcTS is a set of useful primitives to process time series data. It allows to peform the following main tasks i) normalize an  matrix file, ii) decompose it to expose the rank of the matrix, and iii) recover the missing blocks. 
 The tool offers the possibiliy to parametrize the truncation factor (rank). The decomposition and the reovery tasks rely on a efficient matrix decomposition technique called the Centroid Decomposition (CD). Different variants of the CD technique have been integrated in the tool.
 
 ## Prerequisites
