@@ -372,13 +372,13 @@ void exportAnyRuntime(std::string &output, uint64_t n, uint64_t m, int64_t runti
 void exportDecompOutput(std::string &output, const Algebra::Matrix &Load, const Algebra::Matrix &Rel,
                         const std::vector<double> &centroidValues)
 {
-    exportMatrix(output + ".Load", Load);
+    exportMatrix(output + "_L.txt", Load);
     
-    exportMatrix(output + ".Rel", Rel);
+    exportMatrix(output + "_R.txt", Rel);
     
     ofstream out_file;
     // Centroid Values
-    out_file.open(output + ".Centroid", ios::out);
+    out_file.open(output + "_centroid.txt", ios::out);
     for (double elem : centroidValues)
     {
         out_file << elem << std::endl;

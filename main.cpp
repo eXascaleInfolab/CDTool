@@ -100,11 +100,11 @@ int main(int argc, char *argv[])
     {
         if (test == PTestType::Runtime)
         {
-            output = input + ".runtime";
+            output = input + "_time.txt";
         }
         else if (test == PTestType::Precision)
         {
-            output = input + ".precision";
+            output = input + "_prec.txt";
         }
         else
         {
@@ -115,11 +115,11 @@ int main(int argc, char *argv[])
                     break;
                 
                 case PAction::Recovery:
-                    output = input + ".recovered";
+                    output = input + "_recov.txt";
                     break;
 
                 case PAction::Normalization:
-                    output = input + ".normalized";
+                    output = input + "_normal.txt";
                     break;
                 
                 default:
