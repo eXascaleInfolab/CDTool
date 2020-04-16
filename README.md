@@ -37,9 +37,9 @@ Tasks:
 - norm - performs z-score normalization
 
 Actions:
-- res - provides output of the action
-- prec - measures precision (only valid for decomposition)
-- runtime - measures runtime (in microseconds)
+- res - returns the result of the action
+- prec - returns the precision of the action (valid only for decomposition)
+- runtime - returns the runtime of the action (in microseconds)
 
 
 The result is written into the file, decomposition output is written into three files with resp. suffixes (Loading matrix, Relevance matrix, Centroid Values)
