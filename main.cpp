@@ -148,7 +148,7 @@ int main(int argc, char *argv[])
     
     // now we load the matrix (fixed or not) and determine the remaining parameters
     
-    MathIO::MatrixReader reader(input, ' ');
+    MathIO::MatrixReader reader(input, '\0'); // zero char means it'll try to auto-detect
     
     if (!reader.isValid())
     {

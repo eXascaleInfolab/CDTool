@@ -50,6 +50,8 @@ class MatrixReader
     void setFirstRow();
 
     void setNextRow();
+
+    void detectSeparator();
 };
 
 void exportAnyPrecision(std::string &output, uint64_t n, uint64_t m, double precision);

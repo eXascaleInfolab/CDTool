@@ -278,10 +278,31 @@ Algebra::Vector MatrixReader::readNextLine()
     return Algebra::Vector(rowContainer);
 }
 
+void MatrixReader::detectSeparator()
+{
+    if (buffer.find("\t") != std::string::npos)
+    {
+        separator = '\t';
+    }
+    else if (buffer.find(",") != std::string::npos)
+    {
+        separator = ',';
+    }
+    else
+    {
+        separator = ' ';
+    }
+}
+
 void MatrixReader::setFirstRow()
 {
     getline(file, buffer);
     size_t pos = 0;
+
+    if (separator == '\0')
+    {
+        detectSeparator();
+    }
     
     while (pos < buffer.size())
     {
@@ -307,6 +328,11 @@ void MatrixReader::setNextRow()
     
     getline(file, buffer);
     size_t pos = 0;
+
+    if (separator == '\0')
+    {
+        detectSeparator();
+    }
     
     for (uint64_t j = 0; j < m; ++j)
     {
