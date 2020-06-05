@@ -4,7 +4,7 @@ The tool offers the possibiliy to parametrize the truncation factor (rank). The 
 
 ## Prerequisites
 
-- Ubuntu 16 or higher (including Ubuntu derivatives, e.g., Xubuntu).
+- Ubuntu 16 or 18 (including Ubuntu derivatives, e.g., Xubuntu).
 ```bash
     $ sudo apt install build-essential
     $ sudo apt install clang
