@@ -35,15 +35,16 @@ The decomposition and the recovery tasks rely on an efficient matrix decompositi
  | rec    | prec       | |
  | norm   | runtime    | |
 
-- **Tasks**:
+- **Tasks**: list of tasks
     - dec: performs decomposition
     - rec: performs recovery
     - norm: performs z-score normalization
-- **Actions**:
+- **Act**: list of actions
     - res: returns the result of the action
     - prec: returns the precision of the action (valid only for decomposition)
     - runtime: returns the runtime of the action (in microseconds)
 
+- **Input**: Input matrix of time series
 
 The result is written into the file, decomposition output is written into three files with resp. suffixes (Loading matrix, Relevance matrix, Centroid Values)
 
