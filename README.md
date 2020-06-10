@@ -44,7 +44,9 @@ The decomposition and the recovery tasks rely on an efficient matrix decompositi
     - prec: returns the precision of the action (valid only for decomposition)
     - runtime: returns the runtime of the action (in microseconds)
 
+<!---
 The result is written into the file, decomposition output is written into three files with resp. suffixes (Loading matrix, Relevance matrix, Centroid Values)
+-->
 
 - **Input**: Input matrix of time series
 
