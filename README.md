@@ -1,5 +1,5 @@
 # CDTool
-CDTool is a set of CMake primitives to process time series data and peform the following tasks:
+CDTool is a set of CMake primitives to process time series data. The most salient processing tasks are:
 - Normalize a time series matrix using z-score normalization technique.
 - Decompose a time series matrix to expose its rank.
 - Recover the missing blocks inside time series data. 
