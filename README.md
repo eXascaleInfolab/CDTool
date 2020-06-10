@@ -22,7 +22,7 @@ The decomposition and the recovery tasks rely on an efficient matrix decompositi
     $ cd cmake-build-debug
     $ ./cdec -task [arg] -act [arg] -input [filename]
 ```
-- Command-line arguments for the program:
+- Command-line arguments for the program (see Examples below):
 
  | -task | -act | -input |
  | -------- | -------- | -------- | 
