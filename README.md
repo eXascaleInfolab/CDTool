@@ -14,16 +14,11 @@ The decomposition and the recovery tasks rely on an efficient matrix decompositi
     $ sudo apt install clang
 ```
 
-## Build:
+## Build and Execution:
 
 
 ```bash
     $ make all
-```
-
-## Execution:
-
-```bash
     $ cd cmake-build-debug
     $ ./cdec -task [arg] -act [arg] -input [filename]
 ```
