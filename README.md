@@ -44,11 +44,13 @@ The decomposition and the recovery tasks rely on an efficient matrix decompositi
     - prec: returns the precision of the action (valid only for decomposition)
     - runtime: returns the runtime of the action (in microseconds)
 
-- **Input**: Input matrix of time series
-
 The result is written into the file, decomposition output is written into three files with resp. suffixes (Loading matrix, Relevance matrix, Centroid Values)
 
-Optional commands:
+- **Input**: Input matrix of time series
+
+
+
+## Optional commands:
 
 - `-n [size]`, `-m [size]` makes the program read only specific number of rows/columns from the input matrix.
 - `-k [size]` makes decomposition or recovery use this truncation parameter. 
