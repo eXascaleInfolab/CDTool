@@ -60,7 +60,7 @@ Optional commands:
 
 # Examples
 
-- Decompose the matrix `example.txt` and store the result of the decomposition
+- Decompose the matrix `example.txt` and store the result of its decomposition
 ```bash
     $ ./cdec -task dec -act res -input example.txt
 ```
