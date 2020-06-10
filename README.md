@@ -1,5 +1,9 @@
 # CDTool
-CDTool is a set of CMake primitives to process time series data and peform the following tasks i) normalize an input (matrix) file, ii) decompose it to expose the rank of the matrix, and iii) recover the missing blocks. 
+CDTool is a set of CMake primitives to process time series data and peform the following tasks:
+- normalize an input (matrix) file
+- decompose it to expose the rank of the matrix
+- recover the missing blocks. 
+
 The decomposition and the recovery tasks rely on an efficient matrix decomposition technique called the Centroid Decomposition (CD). Different variants of the CD technique have been integrated in the tool.
 
 ## Prerequisites
